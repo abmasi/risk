@@ -1,0 +1,17 @@
+{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "FXMM.Entity": "1.0.0-*",
+    "Microsoft.EntityFrameworkCore": "1.1.1",
+    "MongoDB.Driver": "2.4.3",
+    "MongoDB.Driver.Core": "2.4.3",
+    "NETStandard.Library": "1.6.1"
+  },
+
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": "dnxcore50"
+    }
+  }
+}
