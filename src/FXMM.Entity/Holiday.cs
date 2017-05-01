@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace FXMM.Entity
 {
-    public class Holiday
+    public class Holiday : EntityBase
     {
         public DateTime HolidayDate { get; set; }
         public string HolidayDescription { get; set; }

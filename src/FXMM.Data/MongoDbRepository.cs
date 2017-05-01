@@ -42,12 +42,12 @@ namespace FXMM.Data
             return this.GetAll().LastOrDefault().Id + 1;
         }
 
-        public async Task<DeleteResult> DeleteAsync(string Id)
+        public async Task<DeleteResult> DeleteAsync(int Id)
         {
             return await this.Collection.DeleteOneAsync(Builders<T>.Filter.Eq("Id", Id));
         }
 
-        public DeleteResult Delete(string Id)
+        public DeleteResult Delete(int Id)
         {
             return this.Collection.DeleteOne(Builders<T>.Filter.Eq("Id", Id));
         }
@@ -64,12 +64,12 @@ namespace FXMM.Data
 
         public Task<DeleteResult> DeleteAsync(T entity)
         {
-            return this.DeleteAsync(entity.Id.ToString());
+            return this.DeleteAsync(entity.Id);
         }
 
         public DeleteResult Delete(T entity)
         {
-            return this.Delete(entity.Id.ToString());
+            return this.Delete(entity.Id);
         }
 
         public DeleteResult DeleteAll()
@@ -97,14 +97,14 @@ namespace FXMM.Data
             return await this.Collection.Find(where).FirstOrDefaultAsync();
         }
 
-        public async Task<T> GetAsync(string Id)
+        public async Task<T> GetAsync(int Id)
         {
 	        var filter = Builders<T>.Filter.Eq("Id", Id);
 
 	        return await this.Collection.Find(filter).FirstOrDefaultAsync();		
         }
 
-        public T Get(string Id)
+        public T Get(int Id)
         {
             var filter = Builders<T>.Filter.Eq("Id", Id);
 
@@ -135,6 +135,8 @@ namespace FXMM.Data
         {
             if (entity == null)
                 throw new ArgumentNullException(CollectionName, "Object is null");
+
+            entity.Id = GetNextValue();
 
             await this.Collection.InsertOneAsync(entity);
         }

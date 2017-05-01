@@ -7,8 +7,8 @@ namespace FXMM.Entity
 {
     public class ThirdParty : EntityBase
     {
-        public string THIRDPARTY { get; set; }
-        public string ThirdpartyDescription { get; set; }
+        public string ThirdPartyName { get; set; }
+        public string ThirdPartyDescription { get; set; }
         public ThirdpartyType Type { get; set; }
         public string Contact { get; set; }
         public string Address { get; set; }

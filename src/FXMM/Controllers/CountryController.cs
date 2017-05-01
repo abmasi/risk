@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using FXMM.Data;
-using FXMM.Infrastructure;
 using FXMM.Entity;
 using System;
+using FXMM.Infrastructure;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -35,7 +35,7 @@ namespace FXMM.Controllers
         [HttpGet("{id}")]
         public Country Get(int id)
         {
-            return _repository.Get(id.ToString());
+            return _repository.Get(id);
         }
 
         // POST api/values
@@ -62,14 +62,14 @@ namespace FXMM.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(string id, [FromBody]Country value)
+        public void Put(int id, [FromBody]Country value)
         {
             _repository.Update(value);
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(string id)
+        public void Delete(int id)
         {
             _repository.Delete(id);
         }

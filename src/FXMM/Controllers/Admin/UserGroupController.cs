@@ -3,49 +3,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using FXMM.Data;
 using FXMM.Entity;
+using FXMM.Data;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace FXMM.Controllers.Admin
 {
     [Route("api/[controller]")]
-    public class UserController : Controller
+    public class UserGroupController : Controller
     {
-        private readonly IRepository<UserInfo> _repository;
-
-        public UserController(IRepository<UserInfo> repository)
+        private IRepository<UserGroup> _Repository = null;
+        public UserGroupController(IRepository<UserGroup> repository)
         {
-            _repository = repository;
+            this._Repository = repository;
         }
 
         // GET: api/values
         [HttpGet]
-        public async Task<IEnumerable<UserInfo>> Get()
+        public IEnumerable<string> Get()
         {
-            return await _repository.GetAllAsync();
+            return new string[] { "value1", "value2" };
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public UserInfo Get(int id)
+        public string Get(int id)
         {
-            return _repository.Get(id);
+            return "value";
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]UserInfo value)
+        public void Post([FromBody]string value)
         {
-            _repository.Insert(value);
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]UserInfo value)
+        public void Put(int id, [FromBody]string value)
         {
-            _repository.Update(value);
         }
 
         // DELETE api/values/5
